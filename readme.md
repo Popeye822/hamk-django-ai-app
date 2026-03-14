@@ -15,7 +15,6 @@ The goal of the assignment was to use **AI tools to help generate code for a Dja
 
 **Group Members:**
 
-- Marja Junkkari  
 - Kalle Sepponen  
 
 ---
