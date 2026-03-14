@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .note {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .note h2 {
+            margin-top: 0;
+        }
+
+        .note a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+
+        .done {
+            color: green;
+            font-weight: bold;
+        }
+
+        .not-done {
+            color: red;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 0.9em;
+            color: gray;
+        }
+
+        .top-links {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .top-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 16px;
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .top-links a:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>My AI Course Notes</h1>
+
+    <div class="top-links">
+        <a href="/admin/">Admin</a>
+    </div>
+
+    {% for note in notes %}
+        <div class="note">
+            <h2>
+                <a href="{% url 'note_detail' note.id %}">{{ note.title }}</a>
+            </h2>
+            <p>{{ note.description|truncatewords:20 }}</p>
+            <p class="date">Created: {{ note.created_at }}</p>
+
+            {% if note.is_done %}
+                <p class="done">Status: Done</p>
+            {% else %}
+                <p class="not-done">Status: Not done</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No notes found.</p>
+    {% endfor %}
+</body>
+</html>

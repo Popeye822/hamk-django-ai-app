@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ note.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .date {
+            color: gray;
+            font-size: 0.95em;
+        }
+
+        .done {
+            color: green;
+            font-weight: bold;
+        }
+
+        .not-done {
+            color: red;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #333;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        a:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>{{ note.title }}</h1>
+        <p>{{ note.description }}</p>
+        <p class="date">Created: {{ note.created_at }}</p>
+
+        {% if note.is_done %}
+            <p class="done">Status: Done</p>
+        {% else %}
+            <p class="not-done">Status: Not done</p>
+        {% endif %}
+
+        <a href="{% url 'note_list' %}">Back to notes</a>
+    </div>
+</body>
+</html>
